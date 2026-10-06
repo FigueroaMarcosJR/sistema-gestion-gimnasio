@@ -1,122 +1,121 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
 
+import Socios from "./components/Socios";
+import Cuotas from "./components/Cuotas";
+import Asistencias from "./components/Asistencias";
+import Dashboard from "./components/Dashboard";
 function App() {
-  const [count, setCount] = useState(0)
+    const [seccion, setSeccion] = useState("dashboard");
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    const mostrarContenido = () => {
+        if (seccion === "dashboard") {
+            return <Dashboard />;
+        }
 
-      <div className="ticks"></div>
+        if (seccion === "socios") {
+            return <Socios />;
+        }
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        if (seccion === "cuotas") {
+            return <Cuotas />;
+        }
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        if (seccion === "asistencias") {
+            return <Asistencias />;
+        }
+
+        return null;
+    };
+
+    const claseBoton = (nombre) => {
+        return seccion === nombre
+            ? "btn btn-primary text-start fw-semibold"
+            : "btn btn-light text-start";
+    };
+
+    return (
+        <div className="min-vh-100 bg-light">
+
+            {/* BARRA SUPERIOR */}
+            <nav className="navbar navbar-dark bg-dark px-4 py-3 shadow-sm">
+                <div>
+                    <span className="navbar-brand fw-bold mb-0">
+                        🏋️ Gym Management
+                    </span>
+
+                    <span className="text-secondary d-none d-md-inline">
+                        Sistema de Gestión de Gimnasio
+                    </span>
+                </div>
+            </nav>
+
+            <div className="container-fluid">
+                <div className="row">
+
+                    {/* MENÚ LATERAL */}
+                    <aside className="col-md-2 bg-white min-vh-100 border-end shadow-sm p-3">
+
+                        <div className="mb-4">
+                            <small className="text-uppercase text-muted fw-bold">
+                                Menú principal
+                            </small>
+                        </div>
+
+                        <div className="d-grid gap-2">
+
+                            <button
+                                className={claseBoton("dashboard")}
+                                onClick={() => setSeccion("dashboard")}
+                            >
+                                🏠 Datos
+                            </button>
+
+                            <button
+                                className={claseBoton("socios")}
+                                onClick={() => setSeccion("socios")}
+                            >
+                                👥 Socios
+                            </button>
+
+                            <button
+                                className={claseBoton("cuotas")}
+                                onClick={() => setSeccion("cuotas")}
+                            >
+                                💳 Cuotas
+                            </button>
+
+                            <button
+                                className={claseBoton("asistencias")}
+                                onClick={() => setSeccion("asistencias")}
+                            >
+                                ✅ Asistencias
+                            </button>
+
+                        </div>
+
+                        <hr className="my-4" />
+
+                        <div className="text-muted small">
+                            <div className="fw-semibold">
+                                Sistema de Gimnasio
+                            </div>
+                            <div>
+                                Panel administrativo
+                            </div>
+                        </div>
+
+                    </aside>
+
+                    {/* CONTENIDO PRINCIPAL */}
+                    <main className="col-md-10 p-4 p-lg-5">
+                        {mostrarContenido()}
+                    </main>
+
+                </div>
+            </div>
+
+        </div>
+    );
 }
 
-export default App
+export default App;

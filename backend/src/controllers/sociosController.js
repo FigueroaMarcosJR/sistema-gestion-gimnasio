@@ -94,4 +94,5 @@ export const eliminarSocio = (req, res) => {
 
 };
 
+
 // Recibe la petición del cliente y llama al modelo.
